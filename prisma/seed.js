@@ -1,4 +1,4 @@
-// Creates a test user from data/workoutData.json:  test@athala.dev / test
+// test user:  test@athala.dev / test
 import "dotenv/config";
 import bcrypt from "bcryptjs";
 import prisma from "../src/db.js";
