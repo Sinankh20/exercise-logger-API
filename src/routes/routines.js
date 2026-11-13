@@ -1,4 +1,3 @@
-// Matches the Routines page: it keeps the whole routines array in state and replaces it after every change.
 import { Router } from "express";
 import {prisma} from "../db.js";
 import fail from "../utils/fail.js";

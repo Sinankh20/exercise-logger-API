@@ -7,7 +7,7 @@ const router = Router();
 
 router.use(requireLogin);
 
-// give the page back the object it saved, plus the database id
+
 const toItem = (row) => ({ ...row.data, id: row.id });
 
 /**
