@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  routines     Json      @default("[]") // the whole routines array, exactly as the Routines page holds it
+  workouts     Workout[]
+}
+
+// One finished workout (what ActiveSession builds in handleFinish)
+model Workout {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      String // "YYYY-MM-DD", exactly as the page sends it
+  data      Json // the whole workout object from the page
+  createdAt DateTime @default(now())
+
+  @@index([userId, date])
+}
