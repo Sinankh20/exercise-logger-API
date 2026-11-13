@@ -13,17 +13,17 @@ model User {
   email        String    @unique
   passwordHash String
   name         String
-  routines     Json      @default("[]") // the whole routines array, exactly as the Routines page holds it
+  routines     Json      @default("[]")
   workouts     Workout[]
 }
 
-// One finished workout (what ActiveSession builds in handleFinish)
+
 model Workout {
   id        String   @id @default(cuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date      String // "YYYY-MM-DD", exactly as the page sends it
-  data      Json // the whole workout object from the page
+  date      String 
+  data      Json 
   createdAt DateTime @default(now())
 
   @@index([userId, date])
